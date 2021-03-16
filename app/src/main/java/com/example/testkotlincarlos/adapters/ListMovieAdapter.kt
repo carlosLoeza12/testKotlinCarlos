@@ -9,14 +9,13 @@ import coil.load
 import com.example.testkotlincarlos.R
 import com.example.testkotlincarlos.databinding.ItemMovieBinding
 import com.example.testkotlincarlos.entieties.ListMovieEntity
-import java.util.*
-
 
 class ListMovieAdapter(
     private val listener: OnItemClickListener,
     private val context: Context) : RecyclerView.Adapter<ListMovieAdapter.ViewHolder>()  {
 
     private  var listMovie: List<ListMovieEntity>? = null
+    private  var flagClick=false;
 
     fun sendList(movies: List<ListMovieEntity>) {
         listMovie = movies
@@ -54,15 +53,18 @@ class ListMovieAdapter(
             view.setOnClickListener(this)
         }
 
-        override fun onClick(v: View?) {
-            val  position: Int = adapterPosition
-            if(position!=RecyclerView.NO_POSITION){
-                listener.onItemClick(position)
+        override fun onClick(v: View) {
+            val position: Int = adapterPosition
+            if (position != RecyclerView.NO_POSITION&&!flagClick) {
+                listener.onItemClick(position, v)
+                //flagClick = true
             }
         }
     }
 
     interface OnItemClickListener{
-        fun onItemClick(position: Int)
+        fun onItemClick(position: Int, view : View) {
+
+        }
     }
 }

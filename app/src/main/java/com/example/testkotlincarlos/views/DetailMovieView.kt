@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import coil.load
-import com.example.testkotlincarlos.R
 import com.example.testkotlincarlos.databinding.ActivityDetailMoviewBinding
 import com.example.testkotlincarlos.interfaces.DetailMovieInterface
 import com.example.testkotlincarlos.presenters.DetailMoviePresenter

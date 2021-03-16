@@ -17,7 +17,7 @@
             <androidx.cardview.widget.CardView
                 android:id="@+id/cardViewMovie"
                 android:layout_width="match_parent"
-                android:layout_height="220dp"
+                android:layout_height="250dp"
                 android:layout_margin="8dp"
                 app:cardCornerRadius="10dp"
                 app:cardElevation="5dp">
@@ -26,21 +26,20 @@
                     android:id="@+id/imgPhotoMovie"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:scaleType="centerCrop"
+                    android:scaleType="fitXY"
                     android:src="@drawable/img_not_available">
                 </ImageView>
             </androidx.cardview.widget.CardView>
 
             <TextView
+                android:gravity="center"
                 android:id="@+id/txtTitle"
+                style="@style/textStyleTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/cardViewMovie"
-                android:text="@string/title_movie"
-                android:textSize="22sp"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textStyle="bold">
+                android:text="@string/title_movie">
+
             </TextView>
 
             <TextView
@@ -49,10 +48,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtTitle"
                 android:text="@string/duration_movie"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textStyle="bold">
+                style="@style/textStyleTitle">
             </TextView>
 
 
@@ -62,9 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDuration"
                 android:text="@string/duration_movie"
-                android:textSize="18sp"
-                android:padding="5dp"
-                android:textColor="@color/black">
+                style="@style/textStyleDescription">
             </TextView>
 
             <TextView
@@ -73,10 +67,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDataDuration"
                 android:text="@string/date_release_movie"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textStyle="bold">
+                style="@style/textStyleTitle">
             </TextView>
             <TextView
                 android:id="@+id/txtDataDateRelease"
@@ -84,9 +75,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDateRelease"
                 android:text="@string/date_release_movie"
-                android:textSize="18sp"
-                android:padding="5dp"
-                android:textColor="@color/black">
+                style="@style/textStyleDescription">
             </TextView>
 
             <TextView
@@ -95,10 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDataDateRelease"
                 android:text="@string/vote_movie"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textStyle="bold">
+                style="@style/textStyleTitle">
             </TextView>
             <TextView
                 android:id="@+id/txtDataVote"
@@ -106,9 +92,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtVote"
                 android:text="@string/vote_movie"
-                android:textSize="18sp"
-                android:padding="5dp"
-                android:textColor="@color/black">
+                style="@style/textStyleDescription">
             </TextView>
 
             <TextView
@@ -117,10 +101,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDataVote"
                 android:text="@string/genre_movie"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textStyle="bold">
+                style="@style/textStyleTitle">
             </TextView>
             <TextView
                 android:id="@+id/txtDataGenre"
@@ -128,9 +109,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtGenre"
                 android:text="@string/genre_movie"
-                android:textSize="18sp"
-                android:padding="5dp"
-                android:textColor="@color/black">
+                style="@style/textStyleDescription">
             </TextView>
 
             <TextView
@@ -139,10 +118,7 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDataGenre"
                 android:text="@string/description_movie"
-                android:textSize="20sp"
-                android:padding="5dp"
-                android:textColor="@color/black"
-                android:textStyle="bold">
+                style="@style/textStyleTitle">
             </TextView>
             <TextView
                 android:id="@+id/txtDataDescription"
@@ -150,12 +126,9 @@
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtDescription"
                 android:text="@string/description_movie"
-                android:textSize="18sp"
-                android:padding="5dp"
-                android:textColor="@color/black">
+                style="@style/textStyleDescription">
             </TextView>
         </RelativeLayout>
     </ScrollView>
-
 </RelativeLayout>
 

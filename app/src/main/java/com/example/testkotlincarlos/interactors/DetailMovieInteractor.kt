@@ -4,34 +4,30 @@ import android.content.Context
 import android.util.Log
 import com.example.testkotlincarlos.R
 import com.example.testkotlincarlos.entieties.MovieGenreEntity
-import com.example.testkotlincarlos.entieties.DetailMovieResponse
-import com.example.testkotlincarlos.interfaces.DetailMovieApiInterface
+import com.example.testkotlincarlos.interfaces.api.DetailMovieApiInterface
 import com.example.testkotlincarlos.interfaces.DetailMovieInterface
+import com.example.testkotlincarlos.interfaces.api.RetrofitInstance
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
-import retrofit2.Retrofit
-import retrofit2.converter.gson.GsonConverterFactory
+import kotlinx.coroutines.withContext
 
 class DetailMovieInteractor(private val context: Context) : DetailMovieInterface.Interactor {
 
     private var allGenreName: String =""
 
     override fun getDetailMovieInteractor(idMovie: String, Listener: DetailMovieInterface.Listener) {
-        //hacer coorrtutina
-        CoroutineScope(Dispatchers.IO).launch {
-            //lo que este dentro se va hacer en un hilo secundario
-            val retrofit = Retrofit.Builder()
-                    .baseUrl(context.getString(R.string.api_base_movie))
-                    .addConverterFactory(GsonConverterFactory.create())
-                    .build()
 
-            val api = retrofit.create(DetailMovieApiInterface::class.java)
-            api.getDetailMovieById(idMovie, context.getString(R.string.apikeyMovie), "es-MX").enqueue(object : Callback<DetailMovieResponse> {
-                override fun onResponse(call: Call<DetailMovieResponse>, response: Response<DetailMovieResponse>) {
+        val retService = RetrofitInstance
+                .getRetrofitInstance()
+                .create(DetailMovieApiInterface::class.java)
+
+        CoroutineScope(Dispatchers.Main).launch {
+            try {
+                val response = withContext(Dispatchers.IO) {
+                    retService.getDetailMovieById(idMovie, context.getString(R.string.apikeyMovie), "es-MX")
+                }
+                if (response.isSuccessful) {
                     Log.e("response", "response ${response.body()}")
                     val runtime = response.body()?.runtime
                     val genres = response.body()?.genres
@@ -39,13 +35,14 @@ class DetailMovieInteractor(private val context: Context) : DetailMovieInterface
                         getNameGenreInteractor(it, Listener)
                     }
                     runtime?.let {
-                       Listener.loadDurationListener("$it min")
+                        Listener.loadDurationListener("$it min")
                     }
+                } else {
+                    Listener.messageListener(context.getString(R.string.error))
                 }
-                override fun onFailure(call: Call<DetailMovieResponse>, t: Throwable) {
-                    Listener.messageListener(context.getString(R.string.error_connection))
-                }
-            })
+            } catch (e: Exception) {
+                Listener.messageListener(context.getString(R.string.error_connection))
+            }
         }
     }
 

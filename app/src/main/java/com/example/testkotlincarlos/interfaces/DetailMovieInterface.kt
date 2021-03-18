@@ -2,7 +2,6 @@ package com.example.testkotlincarlos.interfaces
 
 import com.example.testkotlincarlos.entieties.MovieGenreEntity
 
-
 interface DetailMovieInterface {
 
     interface View {

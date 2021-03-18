@@ -1,7 +1,8 @@
 <resources>
     <string name="app_name">testKotlinCarlos</string>
-    <string name="apikeyMovie" >a28c4bc831b590dc669ef8a459fdbff7</string>
+    <string name="api_key_Movie" >a28c4bc831b590dc669ef8a459fdbff7</string>
     <string name="api_base_movie">https://api.themoviedb.org/3/movie/</string>
+    <string name="base_configuration">https://image.tmdb.org/t/p/w500/</string>
     <string name="error_connection">Error de conexión</string>
     <string name="error">Algo salio mal</string>
     <string name="deatil_movie">detail movie</string>
@@ -12,14 +13,6 @@
     <string name="genre_movie">Generos:</string>
     <string name="description_movie">Descripción:</string>
     <string name="date_release_movie">Fecha de estreno:</string>
-    <string name="baseConfiguration">https://image.tmdb.org/t/p/w500/</string>
     <string name="title_activity_detail_movie">detailMovie</string>
-    <!-- Strings used for fragments for navigation -->
-    <string name="first_fragment_label">First Fragment</string>
-    <string name="second_fragment_label">Second Fragment</string>
-    <string name="next">Next</string>
-    <string name="previous">Previous</string>
 
-    <string name="hello_first_fragment">Hello first fragment</string>
-    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
 </resources>

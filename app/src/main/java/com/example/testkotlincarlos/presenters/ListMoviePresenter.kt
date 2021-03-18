@@ -6,7 +6,8 @@ import com.example.testkotlincarlos.interactors.ListMovieInteractor
 import com.example.testkotlincarlos.interfaces.ListMovieInterface
 import com.example.testkotlincarlos.views.ListMovieView
 
-class ListMoviePresenter(private var view: ListMovieView, private var context: Context) : ListMovieInterface.Presenter,ListMovieInterface.Listener {
+class ListMoviePresenter(private val view: ListMovieView,
+                         private val context: Context) : ListMovieInterface.Presenter,ListMovieInterface.Listener {
 
     private val interactor : ListMovieInterface.Interactor = ListMovieInteractor(context)
 

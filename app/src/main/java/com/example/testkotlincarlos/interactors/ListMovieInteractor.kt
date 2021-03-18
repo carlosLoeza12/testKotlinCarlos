@@ -24,7 +24,7 @@ class ListMovieInteractor(private val context: Context) : ListMovieInterface.Int
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val response = withContext(Dispatchers.IO) {
-                    retService.fetchMovies(context.getString(R.string.apikeyMovie), "es-MX", "1")
+                    retService.fetchMovies(context.getString(R.string.api_key_Movie), "es-MX", "1")
                 }
 
                 if (response.isSuccessful) {

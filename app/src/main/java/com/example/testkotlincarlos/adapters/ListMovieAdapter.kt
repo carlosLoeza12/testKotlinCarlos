@@ -1,26 +1,25 @@
 package com.example.testkotlincarlos.adapters
-
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
-import coil.load
 import com.example.testkotlincarlos.R
 import com.example.testkotlincarlos.databinding.ItemMovieBinding
 import com.example.testkotlincarlos.entieties.ListMovieEntity
+import com.example.testkotlincarlos.interactors.loadUrl
+import com.example.testkotlincarlos.views.DetailMovieView
 
-class ListMovieAdapter(
-    private val listener: OnItemClickListener,
-    private val context: Context) : RecyclerView.Adapter<ListMovieAdapter.ViewHolder>()  {
+class ListMovieAdapter(private val context: Context) : RecyclerView.Adapter<ListMovieAdapter.ViewHolder>() {
 
-    private  var listMovie: List<ListMovieEntity>? = null
-    private  var flagClick=false;
+    private var listMovie: List<ListMovieEntity>? = null
 
     fun sendList(movies: List<ListMovieEntity>) {
         listMovie = movies
         notifyDataSetChanged()
     }
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         val layoutInflater = LayoutInflater.from(parent.context)
         return ViewHolder(layoutInflater.inflate(R.layout.item_movie, parent, false))
@@ -32,8 +31,7 @@ class ListMovieAdapter(
             holder.binding.txtTitleMovie.text = movie.title
             holder.binding.txtDateReleaseMovie.text = movie.release_date
             holder.binding.txtVoteMovie.text = movie.vote_average
-
-            holder.binding.imgPhotoMovie.load(context.getString(R.string.baseConfiguration) + movie.poster_path)
+            holder.binding.imgPhotoMovie.loadUrl(context.getString(R.string.base_configuration) + movie.poster_path)
         }
     }
 
@@ -45,26 +43,24 @@ class ListMovieAdapter(
         }
     }
 
-
-    inner class ViewHolder(view: View): RecyclerView.ViewHolder(view),View.OnClickListener {
-
+    inner class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val binding = ItemMovieBinding.bind(view)
+
         init {
-            view.setOnClickListener(this)
-        }
-
-        override fun onClick(v: View) {
-            val position: Int = adapterPosition
-            if (position != RecyclerView.NO_POSITION&&!flagClick) {
-                listener.onItemClick(position, v)
-                //flagClick = true
+            view.setOnClickListener {
+                val position: Int = adapterPosition
+                if (position != RecyclerView.NO_POSITION) {
+                    val intent = Intent(context, DetailMovieView::class.java)
+                    intent.putExtra("idMovie", listMovie?.get(position)?.id)
+                    intent.putExtra("titleMovie", listMovie?.get(position)?.title)
+                    intent.putExtra("voteMovie", listMovie?.get(position)?.vote_average)
+                    intent.putExtra("dateReleaseMovie", listMovie?.get(position)?.release_date)
+                    intent.putExtra("descriptionMovie", listMovie?.get(position)?.overview)
+                    intent.putExtra("urlPhoto", context.getString(R.string.base_configuration) + listMovie?.get(position)?.poster_path
+                    )
+                    context.startActivity(intent)
+                }
             }
-        }
-    }
-
-    interface OnItemClickListener{
-        fun onItemClick(position: Int, view : View) {
-
         }
     }
 }

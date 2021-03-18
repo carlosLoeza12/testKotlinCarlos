@@ -11,11 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.TestKotlinCarlos">
-        <activity android:name=".views.DetailMovieView"></activity>
-        <activity
-            android:name=".views.detailMovie"
-            android:label="@string/title_activity_detail_movie"
-            android:theme="@style/Theme.TestKotlinCarlos.NoActionBar" />
+        <activity android:name=".views.DetailMovieView">
+        </activity>
+
         <activity android:name=".views.ListMovieView">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

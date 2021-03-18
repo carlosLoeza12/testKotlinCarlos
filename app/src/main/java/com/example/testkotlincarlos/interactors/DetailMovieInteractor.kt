@@ -25,7 +25,7 @@ class DetailMovieInteractor(private val context: Context) : DetailMovieInterface
         CoroutineScope(Dispatchers.Main).launch {
             try {
                 val response = withContext(Dispatchers.IO) {
-                    retService.getDetailMovieById(idMovie, context.getString(R.string.apikeyMovie), "es-MX")
+                    retService.getDetailMovieById(idMovie, context.getString(R.string.api_key_Movie), "es-MX")
                 }
                 if (response.isSuccessful) {
                     Log.e("response", "response ${response.body()}")
